@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+<html >
+<style>
+
+.center{
+  padding: 15%;
+  text-align: center;
+}
+
+body{
+  background-color:#cdcfd3;
+
+}
+table{
+  padding: 14px 40px;
+  margin: 10px;
+}
+
+</style>
+<head>
+  {% load static %}
+  <title>Rent</title>
+  <!-- <link rel="stylesheet" type="text/css" href="./style.css"> -->
+
+</head>
+<body>
+<div class="center">
+{% if form.errors %}
+<div class="jumbotron text-center container">
+  <p>Your username and password didn't match. Please try again.</p>
+</div>
+{% endif %}
+{% if next %}
+    {% if user.is_authenticated %}
+    <div class="jumbotron text-center container">
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    </div>
+    {% else %}
+    <div class="jumbotron text-center container">
+      <p>Please login to see this page.</p>
+    </div>
+    {% endif %}
+{% endif %}
+<h2>Login</h2>
+
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+
+  <table style="margin-left:35%; magin-right:30%">
+  <tr>
+  <td>{{ form.username.label_tag }}</td>
+  <td>{{ form.username }}</td>
+  </tr>
+  <tr>
+  <td>{{ form.password.label_tag }}</td>
+  <td>{{ form.password }}</td>
+  </tr>
+  </table>
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+  <button  class="button"type="create"><a href="{% url 'person'%}">create</a></button>
+</form>
+</div>
+
+</body>
+</html>

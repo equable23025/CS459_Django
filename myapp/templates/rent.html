@@ -1,0 +1,61 @@
+
+
+<!DOCTYPE html>
+<html >
+<style>
+.button {
+  background-color: #cdcfd3 ;
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 14px 40px;
+  margin: 10px;
+
+}
+.button:hover {
+    background-color: white;
+
+}
+.center{
+  padding: 22%;
+  text-align: center;
+}
+body{
+  /* background-color:#cdcfd3; */
+  background : linear-gradient(to top left,white,gray);
+  background-repeat: no-repeat ;
+  height: 100%;
+}
+
+
+</style>
+<head>
+  {% load static %}
+  <title>Rent</title>
+  <!-- <link rel="stylesheet" type="text/css" href="./style.css"> -->
+
+</head>
+<body >
+<div class="center">
+
+{% if user.is_authenticated %}
+	 <h1> Hi! {{ user.username }}</h1>
+   {% load static %}
+	  <a href="{% url 'profile'%}"><button class="button" ><h2>Go to profile.</h2></button></a>
+    <h2>Rent</h2>
+	  {% csrf_token %}
+    <!-- {% load crispy_forms_tags %}
+    {% crispy form %} -->
+		<!-- {{ form.car}} -->
+		<!-- {{ form.fee.label_tag }}
+		{{ form.fee }} -->
+
+	  {% load crispy_forms_tags %}
+	  {% crispy form %}
+	{% else %}
+		 <p>You are not logged in</p>
+  		 <a href="{% url 'login' %}">login</a>
+	{% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  .button {
+    background-color: #cdcfd3 ;
+    color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 14px 40px;
+  }
+  .button:hover {
+      background-color: white;
+
+  }
+  .center{
+    height:600px;
+    weight:300px;
+    /* margin: 5%; */
+    padding: 14%;
+    text-align: center;
+
+ }
+ body{
+     background-color:#cdcfd3;
+     background : linear-gradient(to top left,white,gray);
+     background-repeat: no-repeat ;
+     height: 100%;
+ }
+  /* .userp{
+    width: 150px;
+    height:150px;
+} */
+
+
+</style>
+
+  <title>Car</title>
+</head>
+<body>
+  <div class="center">
+
+ {% if user.is_authenticated %}
+  <h1>Hi! {{ user.username }}</h1>
+  <br>
+
+  <a href="{% url 'profile'%}"><button class="button"><h2>Go to profile.</h2></button></a>
+    <h2>Car List</h2>
+  <!-- {% block content %} -->
+<table border="2px solid #fffff" style="margin-left:26%;">
+   {% for car in object_list %}
+
+  <!-- <li>{{car.model}} {{car.detail}} {{car.price}}</li> -->
+
+    <td align="middle"  border="p2x solid #fffff" width="180px">
+      <div  style="padding:10px;" text-align="center">
+      <h4>{{car.model}}</h4>Detail: {{car.detail}}<br>Price: {{car.price}}</div>
+    </td>
+
+
+  <!-- {% empty %} -->
+
+  {% endfor %}
+</table>
+  <!-- {% endblock %} -->
+  {% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+ {% endif %}
+</div>
+
+</body>
+</html>

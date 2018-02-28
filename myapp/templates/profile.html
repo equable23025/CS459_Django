@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>{% block title %}Siraprapa Singkham{% endblock %} </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+
+  .button {
+     background-color: transparent;
+    color: black;
+    border:none;
+
+    padding: 14px 40px;
+    text-decoration: none;
+  }
+
+  /* .center{
+    height:600px;
+    weight:300px;
+    background-color:#cdcfd3;
+    padding: 10%;
+    text-align: center;
+  } */
+  /* .userp{
+    width: 150px;
+    height:150px;
+  } */
+  h2{
+    color: black;
+  }
+  h3{
+    color: black;
+  }
+
+
+
+  </style>
+
+</head>
+<body>
+{% if user.is_authenticated %}
+<div class="jumbotron text-center container">
+  <h1> Hi! {{ user.username }}</h1>
+  <button  class="button"type="logout"><a href="{% url 'logout'%}">logout</a></button>
+</div>
+<div class="jumbotron text-center container">
+      <button  class="button "type="Watch"><a href="{% url 'car'%}"><h2>Watch Cars<br>We have many cars.<br>WATCH ITS!!</h2></a></button>
+    <!-- <div class="col-sm-4 text-center">
+      <button type="Create"><h2>My Profile</h2><br><h3>Create your's cars </h3><br><h3>Let's do it!!</h3></button>
+    </div> -->
+</div>
+<div class="jumbotron text-center container">
+  <button class="button" type="Rent"><a href="{% url 'rent'%}"><h2>Rent Cars<br>Let's find your ideal car<br>GO!!</h2></a></button>
+</div>
+  {% else %}
+  <div class="jumbotron text-center container">
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+  </div>
+  {% endif %}
+</body>
+</html>
